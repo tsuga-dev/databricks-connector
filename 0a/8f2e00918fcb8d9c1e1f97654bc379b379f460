@@ -1,0 +1,86 @@
+tests/unit/sources/tsuga_logs/test_tsuga_logs_lakeflow_connect.py
+  s_1d216eb04f1ea7::t_eb470cc0e7c09f 1-14
+src/databricks/labs/community_connector/sources/tsuga_logs/tsuga_logs.svg
+  s_1d216eb04f1ea7::t_4789f5e6fb010b 1
+src/databricks/labs/community_connector/source_simulator/specs/tsuga_logs/handlers/search_logs.py
+  s_1d216eb04f1ea7::t_eb470cc0e7c09f 1-67
+src/databricks/labs/community_connector/sources/tsuga_logs/connector_spec.yaml
+  s_1d216eb04f1ea7::t_cfcfa5556e3405 1-8,17-20,25-26,28-33
+  s_1d216eb04f1ea7::t_c361daae213a76 34
+README.md
+  s_1d216eb04f1ea7::t_bb6e0254c307ee 21
+src/databricks/labs/community_connector/sources/tsuga_logs/pyproject.toml
+  s_1d216eb04f1ea7::t_9c715705c095e1 7
+pipeline_spec.llm_usage_codex.yaml
+  s_1d216eb04f1ea7::t_6f15f8f3aab2be 1-22
+  s_1d216eb04f1ea7::t_b61e5a09a5d9a5 23-25
+tests/test_tsuga_logs_incremental_read.py
+  s_1d216eb04f1ea7::t_26fb72f0344f8d 9-11
+patches/lakeflow-framework-unique-view-names.patch
+  s_1d216eb04f1ea7::t_833ad0cdba71a4 1-45
+pipeline_spec.llm_usage_claude.yaml
+  s_1d216eb04f1ea7::t_6fa0a3b1ac48d9 1-20
+src/databricks/labs/community_connector/sources/tsuga_logs/tsuga_logs_api_doc.md
+  s_1d216eb04f1ea7::t_ad760516777c7e 1-82
+src/databricks/labs/community_connector/source_simulator/specs/tsuga_logs/endpoints.yaml
+  s_1d216eb04f1ea7::t_eb470cc0e7c09f 1-16
+src/databricks/labs/community_connector/sources/tsuga_logs/sample-ingest.py
+  s_1d216eb04f1ea7::t_0d2e3dc4f32539 17,19-21,23-28,32-42,52
+pyproject.toml
+  s_1d216eb04f1ea7::t_c090ce9e0e88a3 26-30
+src/databricks/labs/community_connector/sources/tsuga_logs/client.py
+  s_1d216eb04f1ea7::t_67e660aa34c5d7 278,291
+  s_1d216eb04f1ea7::t_868d34987116a0 305,308-316
+  s_1d216eb04f1ea7::t_67088bac47f9d1 342,351
+  s_1d216eb04f1ea7::t_d0a0cc60320756 277,290
+  s_1d216eb04f1ea7::t_423282e604a420 306,323-324,328-329,343,352
+  s_1d216eb04f1ea7::t_eb470cc0e7c09f 153,232,238,250
+src/databricks/labs/community_connector/sources/tsuga_logs/README.md
+  s_1d216eb04f1ea7::t_27370ea09a2884 105
+  s_1d216eb04f1ea7::t_84d101b68a9670 1,3,5,7-12,14,16,18,20-24,26-27,29,31,33-36,38,40-42,44,46,48,50,52,54-56,58,60,62,64-69,71,73-83,85-104,106-131,134-137,139,141-144
+  s_1d216eb04f1ea7::t_5a2ee1ac68b876 84
+tests/test_tsuga_logs_lakeflow.py
+  s_1d216eb04f1ea7::t_886faa57749b5c 15-23,26,34-71
+src/databricks/labs/community_connector/source_simulator/specs/tsuga_logs/corpus/logs.json
+  s_1d216eb04f1ea7::t_eb470cc0e7c09f 1-386
+src/databricks/labs/community_connector/sources/tsuga_logs/tsuga_logs.py
+  s_1d216eb04f1ea7::t_6a827145b6f52d 20
+  s_1d216eb04f1ea7::t_eaa5556ab46eef 78
+  s_1d216eb04f1ea7::t_74a58e602258d2 221-225
+  s_1d216eb04f1ea7::t_c7fd7bdaab2de5 233-242
+  s_1d216eb04f1ea7::t_deac4d93010d53 155
+  s_1d216eb04f1ea7::t_1f8ce469d7f2c4 167-181
+  s_1d216eb04f1ea7::t_5998e701cdf9a7 28
+  s_1d216eb04f1ea7::t_eb470cc0e7c09f 61,77
+  s_1d216eb04f1ea7::t_8b455298dd628e 89
+  s_1d216eb04f1ea7::t_97354540908973 62
+  s_1d216eb04f1ea7::t_04be56a2da328c 139,154
+  s_1d216eb04f1ea7::t_0c661f553632db 186
+  s_1d216eb04f1ea7::t_7cd400eb2ec4af 140
+  s_1d216eb04f1ea7::t_d728c2433d2984 228-231
+tests/test_tsuga_logs_client.py
+  s_1d216eb04f1ea7::t_22b5d765f9ef29 158-181
+  s_1d216eb04f1ea7::t_c4e7f247aa78f6 109-135
+src/databricks/labs/community_connector/sources/tsuga_logs/_generated_tsuga_logs_python_source.py
+  s_1d216eb04f1ea7::t_eb470cc0e7c09f 1-881,883-894,896-909,911-926,929-931,934-946,948-955,957-1052,1054-1164,1166-1179,1181-1245,1251-1255,1267-1650
+  s_1d216eb04f1ea7::t_75e151da389279 882,895,910,927-928,932-933,947,956,1053,1165,1180,1246-1250,1256-1266
+patches/README.md
+  s_1d216eb04f1ea7::t_be00ab35b39b05 1-4,8,10,20
+  s_1d216eb04f1ea7::t_fee3b3d5500dc9 5-7,9,11-19,21-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "0a8f2e00918fcb8d9c1e1f97654bc379b379f460",
+  "prompts": {},
+  "sessions": {
+    "s_1d216eb04f1ea7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d66d942-997c-4412-ae18-54deed77a0dc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Arthur Verrez <arthurverrez@gmail.com>"
+    }
+  }
+}
