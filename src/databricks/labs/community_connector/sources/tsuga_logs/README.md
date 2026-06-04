@@ -4,32 +4,15 @@ This documentation describes how to configure and use the **Tsuga Logs** Lakeflo
 
 ## Quick start (Databricks UI)
 
+The repository-level [README](../../../../../../README.md) carries the validated step-by-step custom-connector walkthrough (connection JSON, root-path note, the one-line `ingest.py` edit). Summary:
+
 1. **Add data → + Add Community Connector** — source name `tsuga_logs`, this repository's URL, branch `master`.
-2. **Create connection** — fill in the form: connection name, your Tsuga `operation_api_key`, and (recommended) `query` + `cluster_id`. That is the entire Tsuga configuration; everything else has working defaults.
-3. Finish the wizard (pipeline name, event log location, root path ending in `/src`).
-4. In the pipeline editor, replace the generated `ingest.py` with the template below and set the **one marked line** (the connection name from step 2):
+2. **Create connection** — Auth Type `USES_ANY_STATIC_CREDENTIAL`; put the options in **Additional Options (JSON)**: `operation_api_key`, `query`, optional `cluster_id`/`base_url`, and `externalOptionsAllowList` (full value below).
+3. **Ingestion setup** — pipeline name, event-log catalog/schema, root path like `/Users/<you>/tsuga_connector/src` (the folder must already exist).
+4. In the generated `ingest.py`, replace the placeholder objects with `[{"table": {"source_table": "logs"}}]` — the connection name is pre-filled.
+5. **Run pipeline.**
 
-```python
-from databricks.labs.community_connector import register
-from databricks.labs.community_connector.pipeline import ingest
-
-spark.conf.set("spark.databricks.unityCatalog.connectionDfOptionInjection.enabled", "true")
-
-connection_name = "<YOUR_CONNECTION_NAME>"  # the only line to edit
-
-register(spark, "tsuga_logs")
-
-ingest(spark, {
-    "connection_name": connection_name,
-    "objects": [{"table": {"source_table": "logs"}}],
-})
-```
-
-Alternatively, keep the generated `ingest.py` (it already references your connection) and just set its objects list to `[{"table": {"source_table": "logs"}}]`.
-
-5. **Run pipeline.** Logs matching your connection's `query` land in a Delta table named `logs` in the pipeline's default catalog/schema, then stay current on every run.
-
-Per-table overrides (several differently-filtered tables, window tuning, custom destinations) are documented under [Table Configurations](#table-configurations).
+Several differently-filtered log tables can share one connection via per-table `query` overrides, but each needs its own pipeline (the upstream framework keys table configs by source table name).
 
 ## Prerequisites
 

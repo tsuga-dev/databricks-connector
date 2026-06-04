@@ -39,7 +39,7 @@ Full reference — per-table options, output schema, pagination semantics, pitfa
 - Paginates around the public API's 1000-row cap by recursive time-splitting; optional `allow_truncated_seconds` for burst-heavy sources
 - Multi-cluster organizations supported via `cluster_id`
 - Stable output schema (`event_time`, `level`, `message`, `service_name`, `team`, `env`, `raw_json`, `extracted_at`); heterogeneous payloads ride in `raw_json` without schema churn
-- Several differently-filtered log tables can share one connection (per-table `query` overrides)
+- Several differently-filtered log tables can share one connection (per-table `query` overrides) — one pipeline per table (upstream framework keys configs by source table; see `patches/`)
 
 ## Repository layout
 
