@@ -1210,8 +1210,14 @@ def register_lakeflow_source(spark):
             return max(0, cursor_seconds - incremental_overlap_seconds)
 
         def _parse_table_options(self, table_options: dict[str, str]) -> TableOptions:
+            query = table_options.get("query") or self._default_query
+            if not query:
+                raise ValueError(
+                    "Missing required option 'query'. Set it on the connection or in the "
+                    "table's table_configuration (use '*' explicitly to ingest all logs)."
+                )
             return TableOptions(
-                query=table_options.get("query") or self._default_query or "*",
+                query=query,
                 cluster_id=table_options.get("cluster_id") or self._default_cluster_id,
                 initial_lookback_seconds=self._parse_positive_int(
                     table_options.get("initial_lookback_seconds"),

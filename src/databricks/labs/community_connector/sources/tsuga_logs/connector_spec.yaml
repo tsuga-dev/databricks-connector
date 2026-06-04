@@ -29,9 +29,10 @@ connection:
       type: string
       required: false
       description: >
-        Default Tsuga query used to filter logs for every table that does
-        not set its own 'query' table option (e.g.
-        context.service.name:payments level:ERROR). Defaults to '*'.
+        Tsuga query used to filter logs (e.g.
+        context.service.name:payments level:ERROR). Required unless every
+        table sets its own 'query' table option; use '*' explicitly to
+        ingest all logs.
 
     - name: cluster_id
       type: string

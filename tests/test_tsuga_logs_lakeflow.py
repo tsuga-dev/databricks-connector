@@ -38,7 +38,7 @@ class TsugaLogsLakeflowConnectTests(unittest.TestCase):
             "seen_fingerprints_at_cursor": [],
         }
 
-        records, end_offset = connector.read_table("logs", caught_up_offset, {})
+        records, end_offset = connector.read_table("logs", caught_up_offset, {"query": "*"})
 
         self.assertEqual(list(records), [])
         self.assertEqual(end_offset, caught_up_offset)
@@ -60,6 +60,12 @@ class TsugaLogsLakeflowConnectTests(unittest.TestCase):
             incremental_overlap_seconds=60,
         )
         self.assertEqual(mid_run_resume, previous_run_cursor)
+
+    def test_parse_table_options_requires_query(self) -> None:
+        connector = _connector()
+
+        with self.assertRaises(ValueError):
+            connector._parse_table_options({})
 
     def test_parse_table_options_defaults_cluster_id_to_none(self) -> None:
         connector = _connector()

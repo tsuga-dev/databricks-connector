@@ -11,4 +11,4 @@ class TestTsugaLogsConnector(LakeflowConnectTests):
     # corpus timestamps near wall-clock now, so the connector's
     # lookback-from-now first read returns records without live credentials.
     simulator_source = "tsuga_logs"
-    replay_config = {"operation_api_key": "tsuga_op:1:org:simulator-fake-key"}
+    replay_config = {"operation_api_key": "tsuga_op:1:org:simulator-fake-key", "query": "*"}
