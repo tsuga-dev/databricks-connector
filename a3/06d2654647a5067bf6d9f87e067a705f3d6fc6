@@ -1,0 +1,27 @@
+patches/README.md
+  s_1d216eb04f1ea7::t_830740d4c869c3 22
+pipeline_spec.example.yaml
+  s_1d216eb04f1ea7::t_830740d4c869c3 1-4,8,11-13
+README.md
+  s_1d216eb04f1ea7::t_830740d4c869c3 7-8,34-35,37,39-44,46,48,50-57,59,61-63,65,67
+.gitignore
+  s_1d216eb04f1ea7::t_8d85cd3afbbcaf 9
+src/databricks/labs/community_connector/sources/tsuga_logs/README.md
+  ai_agent 54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "a306d2654647a5067bf6d9f87e067a705f3d6fc6",
+  "prompts": {},
+  "sessions": {
+    "s_1d216eb04f1ea7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d66d942-997c-4412-ae18-54deed77a0dc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Arthur Verrez <arthurverrez@gmail.com>"
+    }
+  }
+}
