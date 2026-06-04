@@ -1,0 +1,66 @@
+src/databricks/labs/community_connector/__init__.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1,3-14
+src/databricks/labs/community_connector/sparkpds/ingestion_agent_datasource.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-851
+src/databricks/labs/community_connector/libs/simulated_source/api.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-618
+src/databricks/labs/community_connector/pipeline/ingestion_pipeline.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-210
+LICENSE
+  s_1d216eb04f1ea7::t_7042aec1720628 1-69
+src/databricks/labs/community_connector/interface/__init__.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1,3-19,21-31
+src/databricks/labs/community_connector/interface/lakeflow_connect.py
+  s_1d216eb04f1ea7::t_7042aec1720628 2,4,8-12,15-20,25-30,36-48,54-78,84-115,120-143,145
+src/databricks/labs/community_connector/sparkpds/__init__.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-47
+src/databricks/labs/community_connector/sparkpds/lakeflow_datasource.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-382
+src/databricks/labs/community_connector/interface/supports_partition.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-138
+src/databricks/labs/community_connector/libs/__init__.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1
+src/databricks/labs/community_connector/sparkpds/registry.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-171
+src/databricks/labs/community_connector/libs/simulated_source/store.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-250
+NOTICE
+  s_1d216eb04f1ea7::t_7042aec1720628 1-6
+  ai_agent 7-10
+src/databricks/labs/community_connector/interface/supports_namespaces.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-70
+src/databricks/labs/community_connector/interface/README.md
+  s_1d216eb04f1ea7::t_7042aec1720628 1-90
+src/databricks/labs/community_connector/libs/simulated_source/__init__.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-7
+src/databricks/labs/community_connector/libs/spec_parser.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-317
+src/databricks/labs/community_connector/interface/agent_protocol.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-84
+src/databricks/labs/community_connector/libs/utils.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-209
+README.md
+  ai_agent 54-57
+src/databricks/labs/community_connector/interface/supports_ingestion_agent.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-83
+src/databricks/labs/community_connector/pipeline/__init__.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1-5
+src/databricks/labs/community_connector/sources/__init__.py
+  s_1d216eb04f1ea7::t_7042aec1720628 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "4b0e4e1973e104e1dbcd45757e17ee639a7183b9",
+  "prompts": {},
+  "sessions": {
+    "s_1d216eb04f1ea7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d66d942-997c-4412-ae18-54deed77a0dc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Arthur Verrez <arthurverrez@gmail.com>"
+    }
+  }
+}
