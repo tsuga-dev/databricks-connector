@@ -51,7 +51,10 @@ Mirrors the [databrickslabs/lakeflow-community-connectors](https://github.com/da
 src/databricks/labs/community_connector/
 ├── sources/tsuga_logs/                  # the connector (README = full reference)
 ├── source_simulator/specs/tsuga_logs/   # offline test fixtures (upstream test harness)
-└── interface/                           # minimal copy of the upstream contract, for local tests
+└── interface/ libs/ pipeline/ sparkpds/ # framework vendored from databrickslabs/
+                                         # lakeflow-community-connectors (see NOTICE) —
+                                         # required: the custom-connector UI clones only
+                                         # this repo, so all runtime imports must resolve here
 tests/                                   # unit tests (pure Python, no Spark needed)
 patches/                                 # notes on upstream framework limitations
 ```

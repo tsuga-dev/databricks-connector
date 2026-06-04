@@ -1,0 +1,10 @@
+Lakeflow Community Connectors
+
+Copyright (2018) Databricks, Inc.
+
+
+This Software includes software developed at Databricks (https://www.databricks.com/) and its use is subject to the included LICENSE file.
+
+This repository vendors framework code (interface/, libs/, pipeline/, sparkpds/)
+from https://github.com/databrickslabs/lakeflow-community-connectors under the
+Databricks License above, with the view-name fix documented in patches/.

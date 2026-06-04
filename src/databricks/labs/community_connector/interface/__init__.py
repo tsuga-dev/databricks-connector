@@ -1,4 +1,31 @@
-from .lakeflow_connect import LakeflowConnect
+"""LakeflowConnect base interface for source connectors."""
 
-__all__ = ["LakeflowConnect"]
+from databricks.labs.community_connector.interface.agent_protocol import (
+    AgentError,
+    ErrorCode,
+    Parameter,
+)
+from databricks.labs.community_connector.interface.lakeflow_connect import LakeflowConnect
+from databricks.labs.community_connector.interface.supports_ingestion_agent import (
+    AgentOperation,
+    SupportsIngestionAgent,
+)
+from databricks.labs.community_connector.interface.supports_namespaces import (
+    SupportsNamespaces,
+)
+from databricks.labs.community_connector.interface.supports_partition import (
+    SupportsPartition,
+    SupportsPartitionedStream,
+)
 
+__all__ = [
+    "AgentError",
+    "AgentOperation",
+    "ErrorCode",
+    "LakeflowConnect",
+    "Parameter",
+    "SupportsIngestionAgent",
+    "SupportsNamespaces",
+    "SupportsPartition",
+    "SupportsPartitionedStream",
+]

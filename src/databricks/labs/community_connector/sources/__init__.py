@@ -1,2 +1,1 @@
-# Standalone source package root.
-
+"""Source connectors for Lakeflow Community Connectors."""
