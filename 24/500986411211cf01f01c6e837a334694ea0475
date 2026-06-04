@@ -1,0 +1,23 @@
+README.md
+  s_1d216eb04f1ea7::t_7b36b7d2ebb372 42
+src/databricks/labs/community_connector/sources/tsuga_logs/README.md
+  s_1d216eb04f1ea7::t_7b36b7d2ebb372 7,9-13,15
+.github/workflows/tests.yml
+  ai_agent 1-20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "24500986411211cf01f01c6e837a334694ea0475",
+  "prompts": {},
+  "sessions": {
+    "s_1d216eb04f1ea7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d66d942-997c-4412-ae18-54deed77a0dc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Arthur Verrez <arthurverrez@gmail.com>"
+    }
+  }
+}
