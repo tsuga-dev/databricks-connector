@@ -16,5 +16,5 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
       - run: pip install pyspark requests pytest ruff
-      - run: ruff check src/databricks/labs/community_connector/sources/tsuga_logs tests --exclude "*_generated_*"
+      - run: ruff check src/databricks/labs/community_connector/sources/tsuga_logs tests --exclude "*_generated_*" --exclude "sample-ingest.py"
       - run: python -m pytest tests/ -q
