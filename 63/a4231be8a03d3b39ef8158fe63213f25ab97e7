@@ -1,0 +1,9 @@
+src/ingest.py
+  ai_agent 1-46
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "63a4231be8a03d3b39ef8158fe63213f25ab97e7",
+  "prompts": {}
+}
