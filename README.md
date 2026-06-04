@@ -7,27 +7,25 @@ Ingest [Tsuga](https://www.tsuga.com) logs into Delta tables you own in Unity Ca
 > Prerequisite: a workspace where Lakeflow community connectors are enabled (the `generic_lfc` workspace setting on older workspaces).
 
 1. In your workspace: **Add data → + Add Community Connector** — source name `tsuga_logs`, this repository's URL, branch `master`.
-2. **Create connection**: connection name, your Tsuga `operation_api_key`, and (recommended) `query` + `cluster_id`. That's the entire Tsuga configuration.
-3. Finish the wizard (pipeline name, event log location, root path ending in `/src`).
-4. Replace the generated `ingest.py` with this block and set the **one marked line** (the connection name from step 2):
+2. **Create connection**: keep Auth Type `USES_ANY_STATIC_CREDENTIAL`, name the connection, switch **Additional Options** to **JSON** and paste (fill in your key; `query`/`cluster_id` are optional defaults — see the connector README):
 
-```python
-from databricks.labs.community_connector import register
-from databricks.labs.community_connector.pipeline import ingest
-
-spark.conf.set("spark.databricks.unityCatalog.connectionDfOptionInjection.enabled", "true")
-
-connection_name = "<YOUR_CONNECTION_NAME>"  # the only line to edit
-
-register(spark, "tsuga_logs")
-
-ingest(spark, {
-    "connection_name": connection_name,
-    "objects": [{"table": {"source_table": "logs"}}],
-})
+```json
+{
+  "sourceName": "tsuga_logs",
+  "operation_api_key": "<YOUR_OPERATION_API_KEY>",
+  "base_url": "https://api.tsuga.com",
+  "query": "<YOUR_TSUGA_QUERY>",
+  "cluster_id": "<YOUR_CLUSTER_ID_IF_MULTI_CLUSTER>",
+  "externalOptionsAllowList": "tableName,tableNameList,tableConfigs,isDeleteFlow,query,cluster_id,initial_lookback_seconds,incremental_overlap_seconds,window_seconds,page_size,max_concurrency,max_events_per_sync,request_timeout_seconds,allow_truncated_seconds"
+}
 ```
 
-Alternatively, keep the generated `ingest.py` (it already references your connection) and just set its objects list to `[{"table": {"source_table": "logs"}}]`.
+3. **Ingestion setup**: pipeline name; event log location (any catalog/schema you can write to — ingested tables land there by default); root path like `/Users/<you>/tsuga_connector/src` — **the folder must already exist** (the wizard creates a Git folder inside it but not the directories above).
+4. In the generated `ingest.py`, replace the placeholder objects with the one real table (the connection name is already filled in):
+
+```python
+"objects": [{"table": {"source_table": "logs"}}],
+```
 
 5. **Run pipeline.** Logs matching your connection's `query` land in a Delta table named `logs` and stay current on every run.
 
