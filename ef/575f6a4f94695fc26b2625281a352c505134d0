@@ -1,0 +1,28 @@
+src/databricks/labs/community_connector/sources/tsuga_logs/sample-ingest.py
+  s_1d216eb04f1ea7::t_db2f5baf7d37b1 4-14,23
+README.md
+  s_1d216eb04f1ea7::t_d50fbcf1f3cd0f 10
+  s_1d216eb04f1ea7::t_07c38a949ba6ca 18,28
+.playwright-mcp/console-2026-06-04T13-55-31-185Z.log
+  s_1d216eb04f1ea7::t_c77357993f2531 565-580
+  s_1d216eb04f1ea7::t_7093a6c18abf38 557-564
+src/databricks/labs/community_connector/sources/tsuga_logs/README.md
+  s_1d216eb04f1ea7::t_d50fbcf1f3cd0f 10
+  s_1d216eb04f1ea7::t_07c38a949ba6ca 18,28
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "ef575f6a4f94695fc26b2625281a352c505134d0",
+  "prompts": {},
+  "sessions": {
+    "s_1d216eb04f1ea7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d66d942-997c-4412-ae18-54deed77a0dc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Arthur Verrez <arthurverrez@gmail.com>"
+    }
+  }
+}
