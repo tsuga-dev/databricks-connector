@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "databricks-connector"
+version = "0.1.0"
+description = "Tsuga logs connector for Databricks Lakeflow community connectors"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests>=2.32.0",
+    "pyspark>=3.5.0",
+]
+
+[project.optional-dependencies]
+dev = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["databricks*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.yaml"]
+
+[tool.pytest.ini_options]
+# tests/unit mirrors the upstream lakeflow-community-connectors layout and
+# only runs inside that repo (it imports the upstream test harness).
+addopts = "--ignore=tests/unit"
+

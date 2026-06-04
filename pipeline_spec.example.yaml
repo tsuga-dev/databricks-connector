@@ -1,0 +1,13 @@
+# Example pipeline spec for the community-connector CLI deployment path.
+# With `query`/`cluster_id` set on the connection, table_configuration can be
+# omitted entirely; the values below show per-table overrides.
+connection_name: <YOUR_TSUGA_CONNECTION>
+objects:
+  - table:
+      source_table: logs
+      destination_table: tsuga_error_logs
+      table_configuration:
+        query: "level:ERROR"
+        initial_lookback_seconds: "86400"
+        window_seconds: "300"
+        max_concurrency: "4"

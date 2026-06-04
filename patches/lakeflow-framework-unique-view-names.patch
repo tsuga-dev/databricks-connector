@@ -1,0 +1,45 @@
+diff --git a/src/databricks/labs/community_connector/pipeline/ingestion_pipeline.py b/src/databricks/labs/community_connector/pipeline/ingestion_pipeline.py
+index a91df2d..dca9488 100644
+--- a/src/databricks/labs/community_connector/pipeline/ingestion_pipeline.py
++++ b/src/databricks/labs/community_connector/pipeline/ingestion_pipeline.py
+@@ -1,5 +1,7 @@
+ # pylint: disable=no-member
+ import json
++import re
++
+ from dataclasses import dataclass
+ from typing import List
+ from pyspark import pipelines as sdp
+@@ -21,9 +23,10 @@ class SdpTableConfig:  # pylint: disable=too-many-instance-attributes
+     with_deletes: bool = False
+ 
+ 
+-def _build_view_name(source_table: str, flow_type: str) -> str:
++def _build_view_name(source_table: str, flow_type: str, destination_table: str) -> str:
+     """Build a unique view name encoding source, flow type, and destination."""
+-    return f"source_{source_table}_{flow_type}"
++    sanitized_destination = re.sub(r"[^A-Za-z0-9_]", "_", destination_table)
++    return f"source_{source_table}_{flow_type}_{sanitized_destination}"
+ 
+ 
+ def _create_cdc_table(
+@@ -51,7 +54,7 @@ def _create_cdc_table(
+     )
+ 
+     if config.with_deletes:
+-        delete_view_name = _build_view_name(config.source_table, "delete")
++        delete_view_name = _build_view_name(config.source_table, "delete", config.destination_table)
+ 
+         @sdp.view(name=delete_view_name)
+         def delete_view():
+@@ -177,7 +180,9 @@ def ingest(spark, pipeline_spec: dict) -> None:
+             "snapshot": "snapshot",
+             "append": "append",
+         }
+-        view_name = _build_view_name(table, flow_type_map.get(ingestion_type, "upsert"))
++        view_name = _build_view_name(
++            table, flow_type_map.get(ingestion_type, "upsert"), destination_table
++        )
+ 
+         config = SdpTableConfig(
+             source_table=table,
