@@ -33,7 +33,7 @@ Provide the following **connection-level** options when configuring the connecto
 |---|---|---|---|---|
 | `operation_api_key` | string | yes | Tsuga operation API key used for public API authentication. | `tsuga_op:1:...` |
 | `base_url` | string | no | Base URL for the Tsuga public API. Defaults to `https://api.tsuga.com`. | `https://api.tsuga.com` |
-| `query` | string | yes* | Tsuga query filtering the ingested logs. *Required here or per table — there is deliberately no default; use `'*'` explicitly to ingest everything. | `context.service.name:payments` |
+| `query` | string | yes* | Tsuga query filtering the ingested logs. *Required here **or** per table — there is deliberately no default; use `'*'` explicitly to ingest everything. **Either/or, not both**: the framework rejects a per-table `query` when one is set on the connection. | `context.service.name:payments` |
 | `cluster_id` | string | no | Default Tsuga cluster for every table that does not set its own `cluster_id` table option. Required for multi-cluster organizations. | `1ab2-3cd4e-fg5h` |
 | `externalOptionsAllowList` | string | yes | Comma-separated list of option names allowed to pass through the connection. Must include the framework options (`tableName,tableNameList,tableConfigs,isDeleteFlow`) plus any per-table source options you use. The `community-connector` CLI derives this from the spec automatically; set it manually when creating the connection in the UI. | see below |
 
@@ -84,11 +84,11 @@ These are set directly under each `table` object in the pipeline spec:
 
 ### Source-specific `table_configuration` options
 
-All of these are optional when `query`/`cluster_id` are set on the connection — the minimal pipeline spec is just `{"table": {"source_table": "logs"}}`. Per-table values override the connection-level defaults (useful for ingesting several differently-filtered log tables through one connection).
+All of these are optional when `query`/`cluster_id` are set on the connection — the minimal pipeline spec is then just `{"table": {"source_table": "logs"}}`. **Choose the level deliberately**: the framework forbids overriding any option that is set on the connection (`Option X already exists on connection and can not be overridden`). Put `query` on the connection for a locked single-purpose connection, or leave it off the connection and set it per table for multi-table flexibility.
 
 | Option | Required | Default | Description |
 |---|---|---|---|
-| `query` | Yes, here or on the connection | none — must be explicit (`'*'` allowed) | Tsuga query string used to filter logs (e.g. `context.service.name:payments level:ERROR`). See the [query syntax documentation](https://app.tsuga.com/documentation/explore/query-syntax). |
+| `query` | Yes, here **xor** on the connection | none — must be explicit (`'*'` allowed) | Tsuga query string used to filter logs (e.g. `context.service.name:payments level:ERROR`). See the [query syntax documentation](https://app.tsuga.com/documentation/explore/query-syntax). |
 | `cluster_id` | No | connection-level `cluster_id`, else default cluster | ID of the Tsuga cluster to target. **Required for multi-cluster organizations.** |
 | `initial_lookback_seconds` | No | `3600` | Initial backfill window when no cursor exists yet. |
 | `incremental_overlap_seconds` | No | `60` | How far to rewind the saved cursor at the start of each run, to pick up late-arriving events. |

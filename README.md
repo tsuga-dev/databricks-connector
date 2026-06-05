@@ -7,7 +7,7 @@ Ingest [Tsuga](https://www.tsuga.com) logs into Delta tables you own in Unity Ca
 > Prerequisite: a workspace where Lakeflow community connectors are enabled (the `generic_lfc` workspace setting on older workspaces).
 
 1. In your workspace: **Add data → + Add Community Connector** — source name `tsuga_logs`, this repository's URL, branch `master`.
-2. **Create connection**: keep Auth Type `USES_ANY_STATIC_CREDENTIAL`, name the connection, switch **Additional Options** to **JSON** and paste (fill in your key; `query`/`cluster_id` are optional defaults — see the connector README):
+2. **Create connection**: keep Auth Type `USES_ANY_STATIC_CREDENTIAL`, name the connection, switch **Additional Options** to **JSON** and paste (fill in your key). Include `query`/`cluster_id` here **only if all tables share them** — options set on the connection cannot be overridden per table; omit them here to set them per table instead:
 
 ```json
 {
