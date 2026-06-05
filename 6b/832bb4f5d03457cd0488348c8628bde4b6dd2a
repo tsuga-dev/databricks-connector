@@ -1,0 +1,33 @@
+README.md
+  s_1d216eb04f1ea7::t_5bbfc44bab6a03 10,17-18,30
+src/databricks/labs/community_connector/sources/tsuga_logs/connector_spec.yaml
+  s_1d216eb04f1ea7::t_b6b9e96d18add3 28,33-35,37,41-43
+src/databricks/labs/community_connector/sources/tsuga_logs/tsuga_logs.py
+  s_1d216eb04f1ea7::t_b6b9e96d18add3 50-57,195-197
+src/databricks/labs/community_connector/sources/tsuga_logs/README.md
+  s_1d216eb04f1ea7::t_5bbfc44bab6a03 10,36-37,87,91-92
+src/databricks/labs/community_connector/sources/tsuga_logs/_generated_tsuga_logs_python_source.py
+  s_1d216eb04f1ea7::t_e6bdf8f47e6bbb 1075-1082,1220-1222
+src/databricks/labs/community_connector/sources/tsuga_logs/pyproject.toml
+  ai_agent 7
+tests/unit/sources/tsuga_logs/test_tsuga_logs_lakeflow_connect.py
+  s_1d216eb04f1ea7::t_5bbfc44bab6a03 14
+tests/test_tsuga_logs_lakeflow.py
+  s_1d216eb04f1ea7::t_5bbfc44bab6a03 83-84
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.3",
+  "base_commit_sha": "6b832bb4f5d03457cd0488348c8628bde4b6dd2a",
+  "prompts": {},
+  "sessions": {
+    "s_1d216eb04f1ea7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "4d66d942-997c-4412-ae18-54deed77a0dc",
+        "model": "claude-opus-4-8"
+      },
+      "human_author": "Arthur Verrez <arthurverrez@gmail.com>"
+    }
+  }
+}
