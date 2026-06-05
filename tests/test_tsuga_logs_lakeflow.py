@@ -80,8 +80,8 @@ class TsugaLogsLakeflowConnectTests(unittest.TestCase):
         connector = TsugaLogsLakeflowConnect(
             {
                 "operation_api_key": "tsuga_op:test",
-                "query": "context.team:central",
-                "cluster_id": "cluster-conn",
+                "default_query": "context.team:central",
+                "default_cluster_id": "cluster-conn",
             }
         )
 

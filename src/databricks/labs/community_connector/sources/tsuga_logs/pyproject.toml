@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lakeflow-community-connectors-tsuga-logs"
-version = "0.2.4"
+version = "0.2.5"
 description = "Tsuga logs connector for Lakeflow Community Connectors"
 requires-python = ">=3.10"
 dependencies = [

@@ -25,22 +25,22 @@ connection:
         Base URL for the Tsuga public API. Override for non-default
         deployments. Defaults to https://api.tsuga.com if not specified.
 
-    - name: query
+    - name: default_query
       type: string
       required: false
       description: >
         Tsuga query used to filter logs (e.g.
-        context.service.name:payments level:ERROR). Required unless every
-        table sets its own 'query' table option; use '*' explicitly to
-        ingest all logs.
+        context.service.name:payments level:ERROR), for every table that
+        does not set its own 'query' table option. Required unless every
+        table sets one; use '*' explicitly to ingest all logs.
 
-    - name: cluster_id
+    - name: default_cluster_id
       type: string
       required: false
       description: >
-        Default Tsuga cluster to target for every table that does not set
-        its own 'cluster_id' table option. Required for multi-cluster
-        organizations; omit to use the default cluster.
+        Tsuga cluster to target for every table that does not set its own
+        'cluster_id' table option. Required for multi-cluster
+        organizations; omit to use the org's default cluster.
 
 # ============================================================================
 # External Options Allowlist

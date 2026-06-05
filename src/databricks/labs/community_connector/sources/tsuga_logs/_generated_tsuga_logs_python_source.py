@@ -1072,10 +1072,14 @@ def register_lakeflow_source(spark):
 
             self._base_url = options.get("base_url", self.DEFAULT_BASE_URL).rstrip("/")
             self._operation_api_key = operation_api_key
-            # Connection-level defaults; table options override per table. These
-            # let the whole Tsuga configuration live in the connection UI form.
-            self._default_query = options.get("query") or None
-            self._default_cluster_id = options.get("cluster_id") or None
+            # Connection-level defaults; table options override per table. Named
+            # default_* so they can never key-collide with per-table options —
+            # the framework forbids a pipeline option whose key exists on the
+            # connection. Legacy unprefixed names still honored.
+            self._default_query = options.get("default_query") or options.get("query") or None
+            self._default_cluster_id = (
+                options.get("default_cluster_id") or options.get("cluster_id") or None
+            )
             self._init_end_exclusive_seconds = int(datetime.now(timezone.utc).timestamp()) + 1
             self._extracted_at = datetime.now(timezone.utc).isoformat()
             self._default_request_timeout_seconds = self._parse_positive_int(
@@ -1213,8 +1217,9 @@ def register_lakeflow_source(spark):
             query = table_options.get("query") or self._default_query
             if not query:
                 raise ValueError(
-                    "Missing required option 'query'. Set it on the connection or in the "
-                    "table's table_configuration (use '*' explicitly to ingest all logs)."
+                    "Missing required option 'query'. Set 'default_query' on the "
+                    "connection or 'query' in the table's table_configuration "
+                    "(use '*' explicitly to ingest all logs)."
                 )
             return TableOptions(
                 query=query,

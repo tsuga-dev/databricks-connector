@@ -7,15 +7,15 @@ Ingest [Tsuga](https://www.tsuga.com) logs into Delta tables you own in Unity Ca
 > Prerequisite: a workspace where Lakeflow community connectors are enabled (the `generic_lfc` workspace setting on older workspaces).
 
 1. In your workspace: **Add data → + Add Community Connector** — source name `tsuga_logs`, this repository's URL, branch `master`.
-2. **Create connection**: keep Auth Type `USES_ANY_STATIC_CREDENTIAL`, name the connection, switch **Additional Options** to **JSON** and paste (fill in your key). Include `query`/`cluster_id` here **only if all tables share them** — options set on the connection cannot be overridden per table; omit them here to set them per table instead:
+2. **Create connection**: keep Auth Type `USES_ANY_STATIC_CREDENTIAL`, name the connection, switch **Additional Options** to **JSON** and paste (fill in your key). `default_query`/`default_cluster_id` apply to every table that doesn't set its own `query`/`cluster_id` — the `default_` prefix exists because the framework forbids pipelines from passing any option key that is stored on the connection:
 
 ```json
 {
   "sourceName": "tsuga_logs",
   "operation_api_key": "<YOUR_OPERATION_API_KEY>",
   "base_url": "https://api.tsuga.com",
-  "query": "<YOUR_TSUGA_QUERY>",
-  "cluster_id": "<YOUR_CLUSTER_ID_IF_MULTI_CLUSTER>",
+  "default_query": "<YOUR_TSUGA_QUERY>",
+  "default_cluster_id": "<YOUR_CLUSTER_ID_IF_MULTI_CLUSTER>",
   "externalOptionsAllowList": "tableName,tableNameList,tableConfigs,isDeleteFlow,query,cluster_id,initial_lookback_seconds,incremental_overlap_seconds,window_seconds,page_size,max_concurrency,max_events_per_sync,request_timeout_seconds,allow_truncated_seconds"
 }
 ```
@@ -27,7 +27,7 @@ Ingest [Tsuga](https://www.tsuga.com) logs into Delta tables you own in Unity Ca
 "objects": [{"table": {"source_table": "logs"}}],
 ```
 
-5. **Run pipeline.** Logs matching your connection's `query` land in a Delta table named `logs` and stay current on every run.
+5. **Run pipeline.** Logs matching your connection's `default_query` land in a Delta table named `logs` and stay current on every run.
 
 Full reference — per-table options, output schema, pagination semantics, pitfalls:
 [`src/databricks/labs/community_connector/sources/tsuga_logs/README.md`](src/databricks/labs/community_connector/sources/tsuga_logs/README.md)
