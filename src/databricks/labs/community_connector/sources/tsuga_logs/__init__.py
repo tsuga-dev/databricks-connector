@@ -10,4 +10,3 @@ try:  # pragma: no cover - exercised only in Spark-capable environments
     __all__ = ["TsugaLogsLakeflowConnect"]
 except ModuleNotFoundError:
     __all__ = []
-
