@@ -637,6 +637,21 @@ def register_lakeflow_source(spark):
         return parsed
 
 
+    def _extract_error_message(response: requests.Response) -> str | None:
+        try:
+            body = response.json()
+        except ValueError:
+            return None
+        if not isinstance(body, dict):
+            return None
+        error = body.get("error")
+        if isinstance(error, dict) and error.get("message") is not None:
+            return str(error["message"])
+        if body.get("message") is not None:
+            return str(body["message"])
+        return None
+
+
     def _extract_service_name(log: Mapping[str, Any]) -> str | None:
         context = log.get("context", {})
         if isinstance(context, dict):
@@ -823,7 +838,15 @@ def register_lakeflow_source(spark):
                     attempt += 1
                     continue
 
-                response.raise_for_status()
+                try:
+                    response.raise_for_status()
+                except requests.HTTPError as error:
+                    detail = _extract_error_message(response)
+                    if detail is not None:
+                        raise requests.HTTPError(
+                            f"{error}: {detail}", response=response
+                        ) from None
+                    raise
                 return response.json()
 
         @staticmethod
@@ -981,12 +1004,12 @@ def register_lakeflow_source(spark):
         end_exclusive_seconds: int,
         window_seconds: int,
         max_concurrency: int,
-        max_events: int | None,
+        max_records: int | None,
         seen_fingerprints_at_cursor: set[str],
         fetch_windows: FetchWindowsFn,
     ) -> WindowedReadResult:
         collected: list[NormalizedLogRecord] = []
-        remaining = max_events
+        remaining = max_records
         next_start_seconds = start_seconds
         first_batch = True
 
@@ -1048,7 +1071,7 @@ def register_lakeflow_source(spark):
         window_seconds: int
         page_size: int
         max_concurrency: int
-        max_events_per_sync: int | None
+        max_records_per_batch: int | None
         request_timeout_seconds: int
         allow_truncated_seconds: bool
 
@@ -1075,18 +1098,11 @@ def register_lakeflow_source(spark):
             # Connection-level defaults; table options override per table. Named
             # default_* so they can never key-collide with per-table options —
             # the framework forbids a pipeline option whose key exists on the
-            # connection. Legacy unprefixed names still honored.
-            self._default_query = options.get("default_query") or options.get("query") or None
-            self._default_cluster_id = (
-                options.get("default_cluster_id") or options.get("cluster_id") or None
-            )
+            # connection.
+            self._default_query = options.get("default_query") or None
+            self._default_cluster_id = options.get("default_cluster_id") or None
             self._init_end_exclusive_seconds = int(datetime.now(timezone.utc).timestamp()) + 1
             self._extracted_at = datetime.now(timezone.utc).isoformat()
-            self._default_request_timeout_seconds = self._parse_positive_int(
-                options.get("request_timeout_seconds"),
-                key="request_timeout_seconds",
-                default=self.DEFAULT_REQUEST_TIMEOUT_SECONDS,
-            )
 
         def list_tables(self) -> list[str]:
             return ["logs"]
@@ -1134,7 +1150,7 @@ def register_lakeflow_source(spark):
                 end_exclusive_seconds=self._init_end_exclusive_seconds,
                 window_seconds=options.window_seconds,
                 max_concurrency=options.max_concurrency,
-                max_events=options.max_events_per_sync,
+                max_records=options.max_records_per_batch,
                 seen_fingerprints_at_cursor=set(
                     (start_offset or {}).get("seen_fingerprints_at_cursor", [])
                 ),
@@ -1205,7 +1221,7 @@ def register_lakeflow_source(spark):
             # returns the same offset and the framework stops paginating.
             if cursor_seconds >= self._init_end_exclusive_seconds:
                 return cursor_seconds
-            # Mid-run resume after a max_events_per_sync truncation: the saved
+            # Mid-run resume after a max_records_per_batch truncation: the saved
             # fingerprints dedup the boundary second, no overlap rewind needed.
             if start_offset.get("seen_fingerprints_at_cursor"):
                 return cursor_seconds
@@ -1249,14 +1265,14 @@ def register_lakeflow_source(spark):
                     key="max_concurrency",
                     default=self.DEFAULT_MAX_CONCURRENCY,
                 ),
-                max_events_per_sync=self._parse_optional_positive_int(
-                    table_options.get("max_events_per_sync"),
-                    key="max_events_per_sync",
+                max_records_per_batch=self._parse_optional_positive_int(
+                    table_options.get("max_records_per_batch"),
+                    key="max_records_per_batch",
                 ),
                 request_timeout_seconds=self._parse_positive_int(
                     table_options.get("request_timeout_seconds"),
                     key="request_timeout_seconds",
-                    default=self._default_request_timeout_seconds,
+                    default=self.DEFAULT_REQUEST_TIMEOUT_SECONDS,
                 ),
                 allow_truncated_seconds=self._parse_bool(
                     table_options.get("allow_truncated_seconds"),
