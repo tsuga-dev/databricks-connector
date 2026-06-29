@@ -1,0 +1,48 @@
+src/databricks/labs/community_connector/source_simulator/specs/tsuga_logs/endpoints.yaml
+  s_1bad4c752e8c04::t_95b35ecc036d62 11-16
+tests/test_tsuga_logs_client.py
+  s_1bad4c752e8c04::t_49944d42add5e7 260-279
+src/databricks/labs/community_connector/sources/tsuga_logs/pyproject.toml
+  s_1bad4c752e8c04::t_508527ee9d6508 11,16-18
+src/databricks/labs/community_connector/sources/tsuga_logs/README.md
+  s_1bad4c752e8c04::t_1efbb33b1b588c 41
+  s_1bad4c752e8c04::t_56f4639448eb7a 98
+src/databricks/labs/community_connector/sources/tsuga_logs/connector_spec.yaml
+  s_1bad4c752e8c04::t_3f7ca782371af2 51
+src/databricks/labs/community_connector/sources/tsuga_logs/tsuga_logs.py
+  s_1bad4c752e8c04::t_de5423c847ed92 176
+  s_1bad4c752e8c04::t_dee31b4987b702 220-222,227
+  s_1bad4c752e8c04::t_f43407f4c76f70 53-55
+  s_1bad4c752e8c04::t_0e55d42675414f 105
+  s_1bad4c752e8c04::t_eff569ef0f232e 26
+src/databricks/labs/community_connector/sources/tsuga_logs/client.py
+  s_1bad4c752e8c04::t_d10986e4a1c729 237-245
+  s_1bad4c752e8c04::t_337e150230b04d 36-50
+src/databricks/labs/community_connector/sources/tsuga_logs/_generated_tsuga_logs_python_source.py
+  s_1bad4c752e8c04::t_e92c7dcdf5eb63 640-654,841-849
+  s_1bad4c752e8c04::t_acd1b321587032 1007,1012,1074,1101-1103,1153,1224,1268-1270,1275
+src/databricks/labs/community_connector/sources/tsuga_logs/incremental_read.py
+  s_1bad4c752e8c04::t_021c7eb26c1650 30,35
+src/databricks/labs/community_connector/source_simulator/specs/tsuga_logs/handlers/search_logs.py
+  s_1bad4c752e8c04::t_af15a413720bd6 36,39,46-52,54
+  s_1bad4c752e8c04::t_56cc59b75c11c7 11-17
+  s_1bad4c752e8c04::t_0eef83761035ef 70-73
+tests/test_tsuga_logs_incremental_read.py
+  s_1bad4c752e8c04::t_d8d96459e47dd9 49,80
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.3",
+  "base_commit_sha": "8bd1e2690522695b2206608f6fb2f1c2427372c5",
+  "prompts": {},
+  "sessions": {
+    "s_1bad4c752e8c04": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d908e146-2091-4b1d-9c4c-61bcc2785247",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Arthur Verrez <arthurverrez@gmail.com>"
+    }
+  }
+}
