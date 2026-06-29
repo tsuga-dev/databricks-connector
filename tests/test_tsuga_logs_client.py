@@ -257,6 +257,26 @@ class TsugaLogsClientTests(unittest.TestCase):
         self.assertEqual(get_mock.call_count, 2)
         sleep_mock.assert_called_once_with(0.0)
 
+    def test_search_surfaces_api_error_message_on_http_error(self) -> None:
+        for body in (
+            {"error": {"message": "clusterId must be provided"}},
+            {"statusCode": 400, "error": "Bad Request", "message": "clusterId must be provided"},
+        ):
+            client = TsugaPublicLogsClient(
+                "https://api.tsuga.com",
+                "tsuga_op:test",
+                min_request_interval_seconds=0,
+            )
+
+            with patch(
+                "databricks.labs.community_connector.sources.tsuga_logs.client.requests.get",
+                return_value=FakeResponse(400, body=body),
+            ):
+                with self.assertRaises(requests.HTTPError) as ctx:
+                    client._search({"from": 1, "to": 2, "query": "*", "maxResults": 1})
+
+            self.assertIn("clusterId must be provided", str(ctx.exception))
+
     def test_search_raises_after_exhausting_rate_limit_retries(self) -> None:
         responses = [
             FakeResponse(429, headers={"Retry-After": "0"}),

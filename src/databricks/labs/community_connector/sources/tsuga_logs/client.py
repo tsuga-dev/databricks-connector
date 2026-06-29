@@ -33,6 +33,21 @@ def _parse_retry_after_seconds(value: str | None) -> float | None:
     return parsed
 
 
+def _extract_error_message(response: requests.Response) -> str | None:
+    try:
+        body = response.json()
+    except ValueError:
+        return None
+    if not isinstance(body, dict):
+        return None
+    error = body.get("error")
+    if isinstance(error, dict) and error.get("message") is not None:
+        return str(error["message"])
+    if body.get("message") is not None:
+        return str(body["message"])
+    return None
+
+
 def _extract_service_name(log: Mapping[str, Any]) -> str | None:
     context = log.get("context", {})
     if isinstance(context, dict):
@@ -219,7 +234,15 @@ class TsugaPublicLogsClient:
                 attempt += 1
                 continue
 
-            response.raise_for_status()
+            try:
+                response.raise_for_status()
+            except requests.HTTPError as error:
+                detail = _extract_error_message(response)
+                if detail is not None:
+                    raise requests.HTTPError(
+                        f"{error}: {detail}", response=response
+                    ) from None
+                raise
             return response.json()
 
     @staticmethod
